@@ -35,13 +35,13 @@ import os.path
     
 # import example0, example1, example2, example3
 # import example4, example5, example6, example7
-import team0, team1, team2, team3, team4
+import team1, team2, team3, team4
 # import team5, team6, team7, team8, team9
 # import team10, team11, team12, team13, team14
 # betray = example1
 # collude = example0
 
-modules = [team0, team1, team2, team3, team4]
+modules = [team1, team2, team3, team4]
 for module in modules:
     reload(module)
     print ('reloaded',module)
