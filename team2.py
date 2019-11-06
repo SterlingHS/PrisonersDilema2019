@@ -7,8 +7,8 @@
 ####
 
 team_name = 'Cheetos' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+strategy_name = 'Second Chances'
+strategy_description = 'Gives everybody a second chance'
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -27,6 +27,15 @@ def move(my_history, their_history, my_score, their_score):
     # Decide whether to return 'c' or 'b'.
     if len(my_history)==0 and len(their_history)==0:
         return 'c'
+    if len(my_history)<=3 and their_history[-2]=='b' and their_history[-1]=='b':
+        return 'b'
+    if len(my_history)>3 and their_history[-1]=='b':
+        return 'b'
+    if len(my_history)>3 and their_history[-3]=='c' and their_history[-2]=='c' and their_history[-1]=='c':
+        return 'c'
+    if len(my_history)>0 and their_history>0:
+        return'c'
+        
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
@@ -52,11 +61,11 @@ if __name__ == '__main__':
               their_history='', 
               my_score=0,
               their_score=0,
-              result='b'):
-         print 'Test passed'
+              result='c'):
+         print 'Test 1 passed'
      # Test 2: Continue betraying if they collude despite being betrayed.
-    test_move(my_history='bbb',
-              their_history='ccc', 
+    if test_move(my_history='bbb',
+              their_history='cbb', 
               # Note the scores are for testing move().
               # The history and scores don't need to match unless
               # that is relevant to the test of move(). Here,
@@ -65,4 +74,26 @@ if __name__ == '__main__':
               # move('bbb', 'ccc', 0, 0) returns 'b'.
               my_score=0, 
               their_score=0,
-              result='b')             
+              result='b'):
+        print 'Test 2 passed'  
+    # Test 3: Betray on first move.
+    if test_move(my_history='bbbb',
+              their_history='cbbb', 
+              my_score=0,
+              their_score=0,
+              result='b'):
+         print 'Test 3 passed'
+     # Test 4: Betray on first move.
+    if test_move(my_history='bbbb',
+              their_history='bccc', 
+              my_score=0,
+              their_score=0,
+              result='c'):
+         print 'Test 4 passed'
+     # Test 5: Betray on first move.
+    if test_move(my_history='cc',
+              their_history='bc', 
+              my_score=0,
+              their_score=0,
+              result='c'):
+         print 'Test 5 passed'     
