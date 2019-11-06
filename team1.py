@@ -11,7 +11,7 @@ team_name = 'Gamblers' # Only 10 chars displayed.
 strategy_name = 'Statistical Logic'
 strategy_description = "Bases off of other players' moves"
 
-def move(myHistory, theirHistory, myScore, theirScore):
+def move2(myHistory, theirHistory, myScore, theirScore):
     ''' Arguments accepted: myHistory, theirHistory are strings.
     myScore, theirScore are ints.
     
@@ -35,7 +35,7 @@ def move(myHistory, theirHistory, myScore, theirScore):
         else:
             return 'c'
             
-def ourMove(myHistory, theirHistory, myScore, theirScore):
+def move(myHistory, theirHistory, myScore, theirScore):
     if len(myHistory)==0:
         return 'b'
     elif theirHistory[-1]=='c' and theirHistory[-2]:
@@ -107,10 +107,10 @@ if __name__ == '__main__':
               theirHistory='cc', 
               myScore=155,
               theirScore=0,
-              result='b'):
+              result='c'):
          print 'Test passed'
      # Test 2: Continue betraying if they collude despite being betrayed.
-    test_move(myHistory='bbb',
+    if test_move(myHistory='bbb',
               theirHistory='ccc', 
               # Note the scores are for testing move().
               # The history and scores don't need to match unless
@@ -120,4 +120,5 @@ if __name__ == '__main__':
               # move('bbb', 'ccc', 0, 0) returns 'b'.
               myScore=0, 
               theirScore=0,
-              result='b')             
+              result='c'):
+        print 'Test passed'
